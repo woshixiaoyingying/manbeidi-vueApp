@@ -17,13 +17,14 @@ let loading=content=>{
 }
 
 
-
 export default {
+ 
 
   //用户登录
   userLogin({commit},{params,loginCallback}){
      http.post(`${settings.defaultUrl}/simpleApi/login`,params)
      .then(res=>{
+      // console.log(res);
       if(res.data.error){
         vm.$message.error(res.data.message);
         loginCallback(false)         
@@ -73,6 +74,7 @@ export default {
   getMinePageData({commit},{successCallback}){
     http.get(`${settings.defaultUrl}/ucenterApi/index`)
     .then(res=>{
+      //console.log(res);
      if(res.data.error){
         vm.$message.error(res.data.message);
       }else{

@@ -1,18 +1,13 @@
 <template>
   <div class="magic-body" style="min-height: 100%;">
-    <div class="magic-titles" :style="fitPhoneTop">会员登录</div>
-    <div class="magic-bg">
+    <!--<div class="magic-titles" :style="fitPhoneTop">会员登录</div>-->
+    <div class="magic-bg"  :style="fitPhoneTop">
       <div class="login-logo">
         <img src="static/images/mobile-logo.png" @click="$router.push('/win_a/home')">
       </div>
       <div class="container">
         <div class="nTab nTab-mytab">
-          <div class="TabTitle">
-            <ul id="myTab2">
-              <li class="active">用户登录</li>
-              <li class="normal" @click="$router.push('//simpleReg')">用户注册</li>
-            </ul>
-          </div>
+          
           <div class="TabContent">
             <div id="myTab2_Content0">
               <div class="p20 login bg-white clearfix simple-box">
@@ -20,6 +15,7 @@
                   <form>
                     <dl class="clearfix">
                       <dd>
+                        <i class="user"></i>
                         <input
                           class="input"
                           type="text"
@@ -32,6 +28,7 @@
                     </dl>
                     <dl class="clearfix">
                       <dd>
+                        <i class="pass"></i>
                         <input
                           type="password"
                           class="input"
@@ -42,7 +39,7 @@
                         >
                       </dd>
                     </dl>
-                    <dl class="clearfix">
+                    <dl class="clearfix boxtop">
                       <dd class="login_box">
                         <span class="inputBorder">
                           <input
@@ -61,10 +58,16 @@
                         </label>
                       </dd>
                     </dl>
-                    <dl class="clearfix">
-                      <dd>
-                        <input type="button" class="btn btn-mains" value="立即登录" @click="divSubmit">
-                      </dd>
+                    <dl class="clearfix boxtop">
+                      <div class="TabTitle">
+                        <ul id="myTab2">
+                          <li class="active"  @click="divSubmit">立即登录</li>
+                          <li class="normal" @click="$router.push('//simpleReg')">免费注册</li>
+                        </ul>
+                      </div>
+                     <!-- <dd>
+                        <input type="button" class="btn btn-mains" value="立即登录">
+                      </dd> -->
                     </dl>
                   </form>
                 </div>
@@ -147,60 +150,67 @@ export default {
   line-height: 25px;
   color: #fff;
   font-weight: 500;
-  background: -webkit-linear-gradient(
-    left,
-    #7c459d,
-    #8a4696,
-    #aa4784,
-    #c14978,
-    #d14970,
-    #df4a68,
-    #f44b5d,
-    #fc4b59
-  ); /* Safari 5.1 - 6.0 */
-  background: -o-linear-gradient(
-    right,
-    #7c459d,
-    #8a4696,
-    #aa4784,
-    #c14978,
-    #d14970,
-    #df4a68,
-    #f44b5d,
-    #fc4b59
-  ); /* Opera 11.1 - 12.0 */
-  background: -moz-linear-gradient(
-    right,
-    #7c459d,
-    #8a4696,
-    #aa4784,
-    #c14978,
-    #d14970,
-    #df4a68,
-    #f44b5d,
-    #fc4b59
-  ); /* Firefox 3.6 - 15 */
-  background: linear-gradient(
-    to right,
-    #7c459d,
-    #8a4696,
-    #aa4784,
-    #c14978,
-    #d14970,
-    #df4a68,
-    #f44b5d,
-    #fc4b59
-  ); /* 标准的语法 */
+  // background: -webkit-linear-gradient(
+  //   left,
+  //   #7c459d,
+  //   #8a4696,
+  //   #aa4784,
+  //   #c14978,
+  //   #d14970,
+  //   #df4a68,
+  //   #f44b5d,
+  //   #fc4b59
+  // ); /* Safari 5.1 - 6.0 */
+  // background: -o-linear-gradient(
+  //   right,
+  //   #7c459d,
+  //   #8a4696,
+  //   #aa4784,
+  //   #c14978,
+  //   #d14970,
+  //   #df4a68,
+  //   #f44b5d,
+  //   #fc4b59
+  // ); /* Opera 11.1 - 12.0 */
+  // background: -moz-linear-gradient(
+  //   right,
+  //   #7c459d,
+  //   #8a4696,
+  //   #aa4784,
+  //   #c14978,
+  //   #d14970,
+  //   #df4a68,
+  //   #f44b5d,
+  //   #fc4b59
+  // ); /* Firefox 3.6 - 15 */
+  // background: linear-gradient(
+  //   to right,
+  //   #7c459d,
+  //   #8a4696,
+  //   #aa4784,
+  //   #c14978,
+  //   #d14970,
+  //   #df4a68,
+  //   #f44b5d,
+  //   #fc4b59
+  // ); /* 标准的语法 */
 }
 .login-logo {
   text-align: center;
-  margin-top: 1.2rem;
+    width: 90%;
+    margin: 0px auto 0;
+    padding: 10% 0;
 }
 .login-logo img {
-  width: 90px;
+  width: 163px;
+}
+.container{
+  background-color: #fff;
+  margin: 0 10px;
+  padding-bottom: 20px;
 }
 .nTab-mytab {
-  padding-top: 30px;
+  padding-top: 10px;
 }
 #myTab2:after {
   content: "";
@@ -208,27 +218,35 @@ export default {
   clear: both;
 }
 #myTab2 {
-  width: 50%;
-  margin: 0 auto;
+  width: 100%;
+  //margin: 0 auto;
 }
 #myTab2 li {
-  width: 48%;
+  width: 100%;
   float: left;
-  font-size: 11pt;
-  padding: 8px 0px;
-  color: #ff3535;
+  font-size: .3rem;
+  padding: 15px ;
   text-align: center;
-  border: 1px #ff3535 solid;
+ // border: 1px #ff3535 solid;
 }
 #myTab2 li.active {
-  background: #ff3535;
+  background-image: url('./images/dl-bg.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
   color: #fff;
+  margin-bottom: 10px;
 }
-#myTab2 li:nth-child(1) {
-  border-radius: 8px 0 0 8px;
+#myTab2 li.normal{
+  background: #ecf0f1;
+    border:1px solid #989da3;
+    color: #555;
+}
+#myTab2 li:nth-child(1) i{
+ 
+  
 }
 #myTab2 li:nth-child(2) {
-  border-radius: 0px 8px 8px 0;
+ // border-radius: 0px 8px 8px 0;
 }
 .login-form-list .input {
   width: 100%;
@@ -237,12 +255,34 @@ export default {
   background: none; /* border: none;*/
   border: 1px #e6e6e6 solid;
   border-radius: 8px;
-  font-size: 15pt;
+  font-size: .3rem;
   padding: 0 10px;
-
+  padding-left: 1rem;
+}
+.login-form-list dd{
+  position: relative;
+}
+.login-form-list  i{
+background-repeat: no-repeat;
+  background-size: 100%;
+  height: .7rem;
+  width:.7rem;
+  display: inline-block;
+  position: absolute;
+  top:.1rem;
+  left: .1rem;
+}
+.login-form-list  .user{
+ background-image: url('./images/login-biao1.png');
+}
+.login-form-list  .pass{
+  background-image: url('./images/login-biao2.png');
 }
 .login-form-list dl {
   padding-top: 30px;
+}
+.login-form-list .boxtop{
+  padding-top: 15px;
 }
 .login-form-list {
   padding: 0 28px;

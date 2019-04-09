@@ -1,6 +1,6 @@
 <template>
   <div class="magic-body">
-    <div class="magic-titles" :style="fitPhoneTop">注册会员</div>
+   <!-- <div class="magic-titles" :style="fitPhoneTop">注册会员</div>-->
     <div class="magic-bg">
       <div class="login-logo">
         <a href="">
@@ -9,12 +9,12 @@
       </div>
       <div class="container">
         <div class="nTab nTab-mytab">
-          <div class="TabTitle">
+          <!--<div class="TabTitle">
             <ul id="myTab2">
               <li class="normal" @click="$router.push('/login')">用户登录</li>
               <li class="active">用户注册</li>
             </ul>
-          </div>
+          </div>-->
           <div class="simple_content_div">
             <el-form class="reg-form" :model="ruleForm" :rules="rules" ref="ruleForm">
               <el-form-item label prop="name">
@@ -64,7 +64,7 @@
             <label class="agree_box">
               <input class="agree" v-model="readme" type="checkbox">
               我已阅读并同意《
-              <a class="red" @click="dialogVisible=true">聖珍用户注册协议</a>》
+              <a class="red" @click="dialogVisible=true">贝曼迪用户注册协议</a>》
             </label>
             <div class="zhuce-but">
               <div class="huang"></div>
@@ -372,13 +372,20 @@ export default {
 }
 .login-logo {
   text-align: center;
-  margin-top: 1.2rem;
+  width: 90%;
+    margin: 0px auto 0;
+    padding: 10% 0;
 }
 .login-logo img {
-  width: 90px;
+  width: 163px;
+}
+.container{
+  background-color: #fff;
+  margin: 0 10px;
+  margin-bottom: 20px;
 }
 .nTab-mytab {
-  padding-top: 30px;
+  padding-top: 10px;
 }
 #myTab2:after {
   content: "";
@@ -396,28 +403,28 @@ export default {
   padding: 8px 0px;
   color: #ff3535;
   text-align: center;
-  border: 1px #ff3535 solid;
+ // border: 1px #ff3535 solid;
 }
 #myTab2 li.active {
-  background: #ff3535;
+ // background: #ff3535;
   color: #fff;
 }
 #myTab2 li:nth-child(1) {
-  border-radius: 8px 0 0 8px;
+ // border-radius: 8px 0 0 8px;
 }
 #myTab2 li:nth-child(2) {
-  border-radius: 0px 8px 8px 0;
+ // border-radius: 0px 8px 8px 0;
 }
 .simple_content_div .el-input__inner {
   width: 100%;
-  height: 50px;
-  line-height: 30px;
-  background: none; /* border: none;*/
-  border: 1px #e6e6e6 solid;
-  border-radius: 8;
-  padding: 0 10px;
-  outline: 0;
-  font-size: 15pt;
+    height: 50px;
+    line-height: 30px;
+    background: none;
+    border: 1px #b7b0ca solid;
+    padding: 0 10px;
+    outline: 0;
+    border-radius: 0;
+    font-size: .3rem;
 }
 .login-form-list dl {
   padding-top: 20px;
@@ -427,55 +434,56 @@ export default {
 }
 .btn-mains {
   width: 100%;
-  background: -webkit-linear-gradient(
-    left,
-    #7f459c,
-    #98468e,
-    #b7487e,
-    #b9487d,
-    #d94a6c,
-    #e74a64,
-    #f24b5e,
-    #fa4a5a
-  ); /* Safari 5.1 - 6.0 */
-  background: -o-linear-gradient(
-    right,
-    #7f459c,
-    #98468e,
-    #b7487e,
-    #b9487d,
-    #d94a6c,
-    #e74a64,
-    #f24b5e,
-    #fa4a5a
-  ); /* Opera 11.1 - 12.0 */
-  background: -moz-linear-gradient(
-    right,
-    #7f459c,
-    #98468e,
-    #b7487e,
-    #b9487d,
-    #d94a6c,
-    #e74a64,
-    #f24b5e,
-    #fa4a5a
-  ); /* Firefox 3.6 - 15 */
-  background: linear-gradient(
-    to right,
-    #7f459c,
-    #98468e,
-    #b7487e,
-    #b9487d,
-    #d94a6c,
-    #e74a64,
-    #f24b5e,
-    #fa4a5a
-  ); /* 标准的语法 */
+  // background: -webkit-linear-gradient(
+  //   left,
+  //   #7f459c,
+  //   #98468e,
+  //   #b7487e,
+  //   #b9487d,
+  //   #d94a6c,
+  //   #e74a64,
+  //   #f24b5e,
+  //   #fa4a5a
+  // ); /* Safari 5.1 - 6.0 */
+  // background: -o-linear-gradient(
+  //   right,
+  //   #7f459c,
+  //   #98468e,
+  //   #b7487e,
+  //   #b9487d,
+  //   #d94a6c,
+  //   #e74a64,
+  //   #f24b5e,
+  //   #fa4a5a
+  // ); /* Opera 11.1 - 12.0 */
+  // background: -moz-linear-gradient(
+  //   right,
+  //   #7f459c,
+  //   #98468e,
+  //   #b7487e,
+  //   #b9487d,
+  //   #d94a6c,
+  //   #e74a64,
+  //   #f24b5e,
+  //   #fa4a5a
+  // ); /* Firefox 3.6 - 15 */
+  // background: linear-gradient(
+  //   to right,
+  //   #7f459c,
+  //   #98468e,
+  //   #b7487e,
+  //   #b9487d,
+  //   #d94a6c,
+  //   #e74a64,
+  //   #f24b5e,
+  //   #fa4a5a
+  // ); /* 标准的语法 */
   color: #fff;
+  background: url('../login/images/dl-bg.png');
   background-size: 100% 100%;
   line-height: 45px;
   border: none;
-  border-radius: 35px;
+ // border-radius: 35px;
   font-size: 16px;
   font-weight: 600;
   margin-top:20px;
@@ -483,6 +491,7 @@ export default {
 .agree_box{
    display: flex;
   align-items: center;
+  font-size: .3rem;
 }
 .red{
   color: red;
@@ -498,8 +507,7 @@ export default {
   line-height: 45px;
   text-align: center;
   background-color: #f4f4f4;
-  border: none;
-  border-radius: 35px;
+  border:1px solid #989da3;
   font-size: 16px;
   font-weight: 600;
   margin:20px 0 40px;

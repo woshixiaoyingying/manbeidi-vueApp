@@ -27,7 +27,7 @@
            
         },
         mounted(){
-                 console.log(this.cate_name) ;
+               //  console.log(this.cate_name) ;
         }
     }
 </script>

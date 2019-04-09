@@ -11,7 +11,10 @@
       
         <home-notice :cate_name="cate_name" :notice_category_id="notice_category_id"></home-notice>
         <home-content :goodsInfo="goodsInfo"/>
-        <home-footer :healthInfo="healthInfo" :footer_category_id="footer_category_id"/>
+        <main-push :main_push="main_push"></main-push>
+        <home-rec :rec="rec"></home-rec>
+        <home-news :news='news' :adpic="adpic"></home-news>
+       <!-- <home-footer :healthInfo="healthInfo" :footer_category_id="footer_category_id"/> -->
     </div>
    
   </div>
@@ -29,6 +32,9 @@ import HomeNotice from "./notice";
 import HomeFooter from "./footer";
 import HomeContent from "./content";
 import Search from './search';
+import MainPush from './mainpush';
+import HomeRec from './rec';
+import HomeNews from './news';
 export default {
   components: {
     HomeHeader,
@@ -37,7 +43,10 @@ export default {
     HomeNotice,
     HomeFooter,
     HomeContent,
-    Search
+    Search,
+    MainPush,
+    HomeRec,
+    HomeNews
   },
   data() {
     return {
@@ -61,7 +70,10 @@ export default {
       finished: false,
       low_price: null,
       main_push: null,
-      ztt: null
+      ztt: null,
+      rec:[],//推荐组合,
+      news:[],//新闻,
+      adpic:[]//广告图片
     };
   },
   computed: {
@@ -103,7 +115,11 @@ export default {
           healthInfo:this.healthInfo,
           recImg: this.recImg,
           newImg1: this.newImg1,
-          newImg2: this.newImg2
+          newImg2: this.newImg2,
+          main_push:this.main_push,
+          rec:this.rec,
+          news:this.news,
+          adpic:this.adpic,
           // hotGoodsData:this.hotGoodsData
         };
         localStorage.setItem("homePageData", JSON.stringify(data));
@@ -131,17 +147,11 @@ export default {
           });
           break;
         case "rec":
-          let arr = ["recImg", "newImg1", "newImg2"];
-          arr.map((item, index) => {
-            // (item=>{
-            if (!this[item]) {
-              return;
-            }
-            imgCache(`${settings.imgBaseUrl}${this[item].path}`).then(res => {
-              this.$set(this[item], "cacheImg", res);
+          this.rec.map((item, index) => {
+            imgCache(`${settings.imgBaseUrl}${item.img}`).then(res => {
+              this.$set(this.rec, index, { ...this.rec[index], cacheImg: res });
               successCallback();
             });
-            // })(item)
           });
           break;
         case "goodsInfo":
@@ -159,6 +169,30 @@ export default {
               this.$set(this.healthInfo, index, { ...this.healthInfo[index], cacheImg: res });
               successCallback();
             });
+          });
+          break;
+          case "mainPush":
+          this.main_push.map((item, index) => {
+            imgCache(`${settings.imgBaseUrl}${item.img}`).then(res => {
+              this.$set(this.main_push, index, { ...this.main_push[index], cacheImg: res });
+              successCallback();
+            });
+          });
+          break;
+          case "adpic":
+          this.adpic.map((item, index) => {
+            imgCache(`${settings.imgBaseUrl}${item.path}`).then(res => {
+              this.$set(this.adpic, index, { ...this.adpic[index], cacheImg: res });
+              successCallback();
+            });
+          });
+          break;
+          case "news":
+          this.news.map((item, index) => {
+              let year=item.publish_time.slice(0,4);
+              let date=item.publish_time.slice(5,10);
+              this.$set(this.news, index, { ...this.news[index], year:year,date:date});
+              successCallback();
           });
           break;
         default:
@@ -193,37 +227,30 @@ export default {
     },
     getData() {
       let successCallback = data => {
-        console.log('getData ' );
-        console.log(data);
-        let {product, ads, low_price, main_push, ztt,article,com_art,nav} = data;
+       // console.log('getData ' );
+       // console.log(data);
+        let {product, ads, low_price, main_push, ztt,article,com_art,nav,rec ,news,ad_pic} = data;
         let item;
         this.navInfo = [];//清空缓存当中的信息
         this.navInfo=nav;
-        // console.log("navInfo");
-        // console.log(this.navInfo);
-        // for(let i in com_art["2"]){
-        //   item = com_art["2"][i];
-        //   this.navInfo.push(item);
-        //   console.log('navInfo')
-        //   console.log(item);
-        // }
+        this.news=news;
+        this.adpic=ad_pic.content;
+        this.rec=rec;
         this.goodsInfo = product;
         this.ads = ads;
-        this.cate_name = article
+        this.cate_name = article;
         this.low_price = low_price;
         this.main_push = main_push;
         this.ztt = ztt;
         this.healthInfo = [];//清空缓存当中的信息
-        // for(let i in com_art["3"]){
-        //   item = com_art["3"][i];
-        //   this.healthInfo.push(item);
-        //    console.log('healthInfo')
-        //   console.log(item);
-        // }
         this.setCache("ads");
         this.setCache("goodsInfo");
         this.setCache("healthInfo");
         this.setCache("navInfo");
+        this.setCache("mainPush");
+        this.setCache("rec");
+        this.setCache("adpic");
+        this.setCache('news');
       };
 
       this.$store.dispatch({ type: "getHomePageData", successCallback });

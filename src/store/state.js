@@ -12,6 +12,5 @@ export default {
   addressData:{},
   //加载状态
   middlemainLoading:{loading:false,text:'加载中。'},
-  //顶部切换按钮
-  toggleBtn:{}
+  
 }

@@ -59,6 +59,8 @@ export default {
 .home-footer {
   background-color: #fff;
   padding-bottom: 30px;
+  position: relative;
+    top: .7rem;
 }
 
 .heath-all-moth {

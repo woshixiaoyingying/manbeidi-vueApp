@@ -29,7 +29,7 @@ export default {
     }
   },
   mounted(){
-    console.log('幻灯',this.ads)
+   // console.log('幻灯',this.ads)
   },
   methods: {
     // onChange(index) {
