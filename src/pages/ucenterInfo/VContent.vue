@@ -235,8 +235,8 @@ export default {
   methods:{
     getData(){
       let successCallback = data=>{
-        console.log(data)
-        this.ruleForm={...this.ruleForm,...data}
+        this.ruleForm={...this.ruleForm,...data};
+        
       }
       this.$store.dispatch({type:'getUcenterInfo',successCallback})
     },
@@ -286,7 +286,7 @@ export default {
 .ucenter-info-content {
   padding: 0 0.4rem 0.5rem 0.4rem;
   .el-form{
-    padding-bottom: 250px;
+    padding-bottom: 15px;
   }
   .el-form-item__error {
       left: auto;

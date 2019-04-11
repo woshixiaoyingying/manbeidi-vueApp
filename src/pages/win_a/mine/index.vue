@@ -1,5 +1,13 @@
 <template>
   <div class="mine">
+    <van-nav-bar title='用户中心' >
+      <router-link :to="{path:'/win_a/home' }" slot="left">
+        <van-icon name="wap-home" size='0.5rem' />
+      </router-link>
+      <router-link :to="{path:'/win_a/shopcart' }"  slot="right">
+          <van-icon name="shopping-cart-o" size='0.5rem' />
+      </router-link>
+    </van-nav-bar>
     <!-- <v-content :rec="rec" :customer="customer" :user="user" @showData="getData"></v-content> -->
     <home-personal :rec="rec" :customer="customer" :user="user" @showData="getData"></home-personal>
   </div>

@@ -13,7 +13,7 @@
 /* 解决引入了移动端自适应rem.js之后vant的nav样式出错 */
 
 .van-nav-bar .van-icon {
-  color: #ff6633;
+  color: #929292;
 }
 
 .indicator_item {

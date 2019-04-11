@@ -7,7 +7,9 @@
                 placeholder="请输入搜索关键词"
                 shape="round"
             />
-           <van-icon name="shopping-cart-o" size='0.5rem'/>
+        <router-link :to="{path:'/win_a/shopcart' }"  slot="right">
+            <van-icon name="shopping-cart-o" size='0.5rem' />
+        </router-link>
         </form>
 
     </div>

@@ -39,12 +39,13 @@
       <div class="v2_bottom">
         <van-row>
           <van-col span="12">账户余额:{{customer.balance}}</van-col>
-          <van-col span="12">金豆余额:{{customer.point}}</van-col>
-        </van-row>
-        <van-row>
           <van-col span="12">我的直推:{{direct_num}}人</van-col>
-          <van-col span="12">我的间推:{{indetect_num}}人</van-col>
+          <!--<van-col span="12">金豆余额:{{customer.point}}</van-col>-->
         </van-row>
+       <!-- <van-row>
+          
+          <van-col span="12">我的间推:{{indetect_num}}人</van-col>
+        </van-row>-->
       </div>
     </div>
     <div class="v3_personal">
@@ -75,39 +76,50 @@
       <h3 class="v4_personal_title">
         <p>相关收益</p>
       </h3>
-      <div class="profit-xj">
-        <van-row>
-          <van-col span="3">
-            <i class="iconfont icon-addressbook"></i>
-          </van-col>
-          <van-col span="12">本月个人业绩</van-col>
-          <van-col span="9" class="beizhu">{{totalMoney}}元</van-col>
-        </van-row>
+      <div class="profit-xj" >
         <div @click="$router.push(`/ucenter/bonus_list/rec`)">
           <van-row>
             <van-col span="3">
-              <i class="iconfont icon-redpacket"></i>
+              <i class="iconfont icon-addressbook"></i>
             </van-col>
-            <van-col span="12">会员奖流水</van-col>
-            <van-col span="9" class="beizhu">赚{{bonus['bonus_rec']}}元</van-col>
+            <van-col span="12">推荐奖流水</van-col>
+            <van-col span="9" class="beizhu">赚{{totalMoney}}元</van-col>
           </van-row>
         </div>
-        <div @click="$router.push(`/ucenter/bonus_list/league`)">
+        <div @click="$router.push(`/ucenter/bonus_list/divide`)">
           <van-row>
             <van-col span="3">
               <i class="iconfont icon-redpacket"></i>
             </van-col>
-            <van-col span="12">运营奖流水</van-col>
-            <van-col span="9" class="beizhu">赚{{bonus['bonus_league']}}元</van-col>
+            <van-col span="12">晋级奖流水</van-col>
+            <van-col span="9" class="beizhu">赚{{bonus['bonus_divide']}}元</van-col>
           </van-row>
         </div>
-        <div @click="$router.push(`/ucenter/bonus_list/king`)">
+        <div @click="$router.push(`/ucenter/bonus_list/resale`)">
           <van-row>
             <van-col span="3">
               <i class="iconfont icon-redpacket"></i>
             </van-col>
-            <van-col span="12">合伙人奖流水</van-col>
-            <van-col span="9" class="beizhu">赚{{bonus['bonus_king']}}元</van-col>
+            <van-col span="12">销售奖流水</van-col>
+            <van-col span="9" class="beizhu">赚{{bonus['bonus_resale']}}元</van-col>
+          </van-row>
+        </div>
+        <div @click="$router.push(`/ucenter/bonus_list/declare`)">
+          <van-row>
+            <van-col span="3">
+              <i class="iconfont icon-redpacket"></i>
+            </van-col>
+            <van-col span="12">报单奖流水</van-col>
+            <van-col span="9" class="beizhu">赚{{bonus['bonus_declare']}}元</van-col>
+          </van-row>
+        </div>
+        <div @click="$router.push(`/ucenter/bonus_list/tend`)">
+          <van-row>
+            <van-col span="3">
+              <i class="iconfont icon-redpacket"></i>
+            </van-col>
+            <van-col span="12">抚育奖流水</van-col>
+            <van-col span="9" class="beizhu">赚{{bonus['bonus_tend']}}元</van-col>
           </van-row>
         </div>
 
@@ -118,7 +130,7 @@
           <van-col span="12">剩余收益</van-col>
           <van-col span="9" class="beizhu">{{customer['totals']}}元</van-col>
         </van-row>
-        <div @click="$router.push(`//ucenter/winerice`)">
+       <!-- <div @click="$router.push(`//ucenter/winerice`)">
           <van-row>
             <van-col span="3">
               <i class="iconfont icon-redpacket"></i>
@@ -126,7 +138,7 @@
             <van-col span="12">金豆记录</van-col>
             <van-col span="9" class="beizhu">赚{{bonus['point']}}金豆</van-col>
           </van-row>
-        </div>
+        </div>-->
 
         <div class="tixian">
            <a class="btn btn_red" @click="$router.push('///putForward')">申请提现</a>
@@ -158,7 +170,7 @@
         </van-col>
       </van-row>
     </div>
-    <div class="v6_personal">
+   <!-- <div class="v6_personal">
       <van-row type="flex" justify="space-between">
         <van-col span="10">
           <a class="liwu" @click="$router.push('//ucenter/gifts')">
@@ -171,7 +183,7 @@
           </a>
         </van-col>
       </van-row>
-    </div>
+    </div>-->
     <div class="v7_personal">
       <van-row>
         <van-col span="6">
@@ -197,8 +209,8 @@
       </van-row>
     </div>
     <div class="v8_personal">
-        <van-row>
-            <van-col span="8" offset="8">
+        <van-row class="quit">
+            <van-col  style="width:100%;">
               <a @click="exitLogon" class="btn btn_red">安全退出</a>
             </van-col>
           </van-row>
@@ -238,14 +250,15 @@ export default {
       fitPhoneTop: "fitPhoneTop"
     }),
     level() {
-      if (this.customer["is_wine"] == 1) {
-        return "普通会员";
-      } else {
-        if (this.customer["is_partner"] == 1) {
-          return "合伙人";
-        }
-        return "未激活";
-      }
+      return this.customer.gname;
+      // if (this.customer["is_wine"] == 1) {
+      //   return "普通会员";
+      // } else {
+      //   if (this.customer["is_partner"] == 1) {
+      //     return "合伙人";
+      //   }
+      //   return "未激活";
+      // }
     },
     headerImg() {
       let photoImg = "";
@@ -280,14 +293,15 @@ export default {
     },
     getData() {
       let successCallback = data => {
+        console.log(data);
         this.customer = { ...data.customer };
-        this.bonus = { ...data.income.bonus };
-        this.todayTotals = data.income.todayTotals;
-        this.totalBonus = data.income.totalBonus;
-        this.direct_num = data.direct_num;
+        this.bonus = { ...data.data.bonus };
+        this.todayTotals = data.data.todayTotals;
+        this.totalBonus = data.data.totalBonus;
+        this.direct_num = data.data.mydirect;
         this.indetect_num = data.indetect_num;
-        this.perf = data.income.perf;
-        this.totalMoney = data.totalMoney;
+        //this.perf = data.income.perf;
+        this.totalMoney = data.data.bonus.bonus_rec;
       };
       this.$store.dispatch({ type: "getMinePageData", successCallback });
     },
@@ -341,7 +355,7 @@ export default {
   height: 20px;
 }
 .v1_personal{
- background: url(./images/personalbg.png) no-repeat center bottom;
+ background-color: #00853a;
 }
 .v1_personal,
 .v2_personal {
@@ -350,8 +364,8 @@ export default {
 .v2_personal {
   top: -40px;
   background-color: #fff;
-  width: calc(100% - 40px);
-  left: 20px;
+  width: calc(100% - 20px);
+  left: 10px;
   padding: 10px;
   border-radius: 10px;
 }
@@ -411,8 +425,8 @@ export default {
 .v5_personal,
 .v7_personal ,.v6_personal{
   background-color: #fff;
-  width: calc(100% - 40px);
-  margin-left: 20px;
+  width: calc(100% - 20px);
+  margin-left: 10px;
   border-radius: 10px;
 }
 .v3_personal .van-row .van-col a,
@@ -433,8 +447,8 @@ export default {
 .v4_personal {
   background-color: #fff;
   padding: 10px 20px 10px;
-  width: calc(100% - 40px);
-  margin-left: 20px;
+  width: calc(100% - 20px);
+  margin-left: 10px;
   margin-top: 10px;
   border-radius: 10px;
   position: relative;
@@ -446,7 +460,7 @@ export default {
 .v4_personal_title {
   height: 40px;
   line-height: 40px;
-  font-size: 22px;
+  font-size: .4rem;
   position: relative;
 }
 .v4_personal_title p{
@@ -471,7 +485,7 @@ export default {
 }
 .beizhu {
   font-size: 10px;
-  color: #ff6633;
+  color: #523b17;
   text-align: right;
 }
 .iconfont {
@@ -502,11 +516,12 @@ export default {
 .btn.btn_red {
     margin: 0 auto;
     border: 1px solid #f36d15;
-    color: #f36d15;
+    color: #fff;
     text-align: center;
     border-radius: 4px;
-    background-color: #fff;
+    background-color: #f36d15;
     line-height: 40px;
+    font-weight: 600;
 }
 .picImg{
   display: none;
@@ -515,5 +530,17 @@ export default {
   line-height: 50px;
   height: 50px;
   font-size: 10pt;
+}
+.quit{
+  padding: 0 10px;
+  div{
+    
+    .btn.btn_red{
+      color: #fff;
+      background-color: #00853a;
+      border-color: #00853a;
+    }
+  }
+  
 }
 </style>

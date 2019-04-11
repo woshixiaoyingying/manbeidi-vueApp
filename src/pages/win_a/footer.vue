@@ -7,15 +7,16 @@
       </router-link>
     </div>
     <div>
-      <router-link to="/win_a/extension" class="g-tabbar-item">
-        <i class="icon iconfonts icon-tui"></i> 推广
-      </router-link>
-    </div>
-    <div>
       <router-link to="/win_a/shopcart" class="g-tabbar-item">
         <i class="icon iconfonts icon-cart"></i> 购物车
       </router-link>
     </div>
+    <div>
+      <router-link to="/win_a/extension" class="g-tabbar-item">
+        <i class="icon iconfonts icon-tui"></i> 推广
+      </router-link>
+    </div>
+    
     <div>
       <router-link to="/win_a/mine" class="g-tabbar-item">
         <i class="icon iconfonts icon-personal"></i> 个人中心

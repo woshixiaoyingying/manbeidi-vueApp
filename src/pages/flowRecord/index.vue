@@ -90,17 +90,20 @@ export default {
     title(){
       let title=''
       switch (this.type) {
+        case 'divide':
+          title = '晋级奖流水'
+          break;
         case 'rec':
-          title = '会员奖流水'
+          title = '推荐奖流水'
           break;
-        case 'league':
-          title = '运营奖流水'
+        case 'resale':
+          title = '销售奖流水'
           break;
-        case 'king':
-          title = '合伙人奖流水'
+        case 'tend':
+          title = '抚育奖流水'
           break;
-        case 'arhat':
-          title = '18罗汉奖流水'
+        case 'declare':
+          title = '报单奖流水'
           break;
       
         default:
@@ -154,4 +157,5 @@ export default {
 .bottom{
   flex-shrink: 0;
 }
+
 </style>

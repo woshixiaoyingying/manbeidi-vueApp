@@ -39,8 +39,10 @@ export default {
       width: 1.93rem;
       height: 0.72rem;
       margin: 0 auto;
-      border: 1px solid #ff3535;
-      color: #ff3535;
+      border: 1px solid #00853a;
+      background-color: #00853a;
+      color: #fff;
+      font-weight: 600;
       line-height: 0.72rem;
       text-align: center;
       margin-top: 0.6rem;

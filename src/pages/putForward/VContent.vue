@@ -1,6 +1,6 @@
 <template>
 <div class="tab  bg-white tixian-content" index="0" style="font-size:10px">
-  <dd class="yue">可用金额：<label class="f18 red">￥{{accountBalance.totals}}</label><span class="shouxufei">提现手续费为{{accountBalance.fund_wdrate}}%</span></dd>
+  <dd class="yue">账户余额：<label class="f18 red">￥{{accountBalance.totals}}</label><span class="shouxufei">提现手续费为{{accountBalance.fund_wdrate}}%</span></dd>
 	<div class="tab-body">
 		<div id="withdraw-dialog" class="" style="display: block;">
 
@@ -139,7 +139,8 @@ export default {
   line-height: 60px;
 font-size: 13pt;
   padding: 0 20px;
-  position: relative;
+  background-color: #00853a;
+    color: #fff;
 }
 .van-row{
   position: relative;
@@ -158,11 +159,11 @@ font-size: 13pt;
 }
 .btn_red.btn{
    margin: 0 auto;
-    border: 1px solid #ff6633;
-    color: #ff6633;
+    border: 1px solid #00853a;
+    color: #fff;
     text-align: center;
     border-radius: 4px;
-    background-color: #fff;
+    background-color: #00853a;
     line-height: 40px;
 }
 .shouxufei{

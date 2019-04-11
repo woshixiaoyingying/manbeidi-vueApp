@@ -85,7 +85,7 @@ export default {
     totalPrice(){
       let price = 0
       for(let key in this.shopCartData){
-        price+=(this.shopCartData[key].sell_total)
+        price+=(this.shopCartData[key].amount)
       }
       return number_format(price)
     },
@@ -102,7 +102,8 @@ export default {
   methods:{
     getData(){
       let successCallback = data=>{
-        this.shopCartData = data
+        this.shopCartData = data;
+        console.log(data);
       }
       this.$store.dispatch({type:'getShopCartData',successCallback})
     },
@@ -329,16 +330,17 @@ export default {
       color: #ff6633;
     }
     .jia{
-      color: #ff6633;
+      color: #c00;
       font-size: 0.31rem;
+      font-weight: 600;
     }
   }
   .but{
     // background-image: url('./images/btnbeijing_28.jpg');
-    color: #ff6633;
-    background-color: #fff;
-    border: 1px solid #ff6633;
-    border-radius: 0.32rem;
+    color: #fff;
+    background-color: #00853a;
+    border: 1px solid #00853a;
+   // border-radius: 0.32rem;
     background-size: 100%;
     background-repeat: no-repeat;
     width: 2.84rem;

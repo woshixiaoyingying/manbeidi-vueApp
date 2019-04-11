@@ -17,7 +17,7 @@
                         <div class="news-info">
                             <div>
                                 <h3>
-                                    <router-link :to="{path:'//article/detail', query:{id:item.id}}" >
+                                    <router-link :to="{path:'//article/detail', query:{id:item.id,title:item.title}}" >
                                     <p class="new-title">{{item.title}}</p> 
                                     </router-link>
                                 </h3>

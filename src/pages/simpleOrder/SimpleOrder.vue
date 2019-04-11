@@ -29,7 +29,7 @@
         </ul>-->
       </div>
       <h3 class="htitle">支付方式：</h3>
-      <div class="mt20 p20 bg-white">
+      <div class=" p20 bg-white">
         <ul class="payment-list">
           <div>
             <van-radio-group v-model="payment_id" @change="changeFu">
@@ -81,7 +81,7 @@
           />
         </van-cell-group>
       </div>
-      <div class="mt20 p20 bg-white" id="voucher-n" style="display: none">
+      <div class="mt20 p20 bg-white" id="voucher-n" style="display:none;">
         <p class="clearfix">
           提示：一个订单最多能使用一张代金券（
           <b class="red">注：代金券仅能抵扣商品金额,多出商品的部分忽略不计</b>）。
@@ -133,7 +133,7 @@
                 </p>
               </td>
             </tr>
-            <tr>
+            <tr style="display:none;">
               <td class="tr orange">送金豆：</td>
               <td>
                 <p class="fr orange">
@@ -223,31 +223,35 @@ export default {
       this.point = point; //积分
       this.total = total;
       let successCallback = data => {
+        console.log(data);
         this.fee = data.fee;
       };
       let params = { total, weight };
+      console.log(params);
       this.$store.dispatch({ type: "getFreight", successCallback, params });
     },
     getData() {
       let successCallback = data => {
+        console.log(data);
         let { address, parse_area, payment_list, cart, tax, store_list } = data;
         this.address = address;
         this.parse_area = parse_area;
-        //this.payment_list = payment_list
+        this.payment_list = payment_list
         this.cart = cart;
         this.tax = tax;
         this.store_list = store_list;
-        console.log(data);
         for (let key in address) {
           let obj = {};
+          let add ='';
+          for( let i in parse_area){
+            add = parse_area[address[key].province]+' '+
+                    parse_area[address[key].city]+' '+
+                    parse_area[address[key].county]+' '+
+                    address[key].addr;
+          }
           obj.id = address[key].id;
           obj.name = address[key].accept_name;
           obj.tel = address[key].mobile;
-          let add =
-            address[key].province +
-            address[key].city +
-            address[key].county +
-            address[key].addr;
           obj.address = add;
           this.list.push(obj);
           if (address[key].is_default == "1") {
@@ -256,7 +260,7 @@ export default {
           }
         }
         //this.payment_id = payment_list[0].id
-        console.log(this.list);
+       // console.log(this.list);
         this.getFreight(cart);
       };
       this.$store.dispatch({ type: "getSimpleOrderData", successCallback });

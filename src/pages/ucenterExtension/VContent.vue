@@ -92,7 +92,7 @@ export default {
           this.$message.error(data.message);
           this.errorMessage = data.message;
         } else {
-          this.share_url = data.message.share_url;
+          this.share_url = data.message.htmlImg;
           this.updateView(data.message.photoList);
         }
       };
@@ -140,7 +140,7 @@ export default {
       let showIndex = this.extensionData.length / 2;
       let galleryTop = new Swiper(".gallery-top", {
         spaceBetween: 10,
-        initialSlide: showIndex,
+        //initialSlide: showIndex,
         nextButton: ".swiper-button-next",
         prevButton: ".swiper-button-prev"
       });
@@ -268,11 +268,12 @@ export default {
 }
 .btn_red.btn{
     margin: 0 auto;
-    border: 1px solid #ff6633;
-    color: #ff6633;
+    border: 1px solid #00853a;
+    color: #fff;
+    font-weight: 600;
     text-align: center;
     border-radius: 4px;
-    background-color: #fff;
+    background-color: #00853a;
     line-height: 40px;
 }
 .swiper-button-prev.swiper-button-white,.swiper-button-next.swiper-button-white{

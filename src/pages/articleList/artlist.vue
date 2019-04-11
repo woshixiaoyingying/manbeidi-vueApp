@@ -2,7 +2,7 @@
   <div class="artlist content">
    
     <div class="art_title_box" v-for="(item,index) in artInfo">
-    <router-link :to="{path:'//article/detail',query:{id:item.id}}">
+    <router-link :to="{path:'//article/detail',query:{id:item.id,title:item.title}}">
       <span class="dian"></span><h3 class="art_title">{{item.title}}</h3>
     </router-link>
     </div>

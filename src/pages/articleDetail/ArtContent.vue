@@ -1,6 +1,11 @@
 <template>
   <div class="article">
-    <h3 class="art_title art">{{article.title}}</h3>
+    <div class="title-back">
+      <h1 class="art_title art">{{article.title}}</h1>
+      <div>
+        <span>{{article.publish_time}}</span>
+      </div>
+    </div>
     <p class="art_content" v-html="article.content"></p>
   </div>
 </template>
@@ -8,20 +13,26 @@
 <script>
 export default {
   name: "ArtContent",
-  props: ["id"],
+  props: ["id","link"],
   data() {
     return {
       article: {}
     };
   },
   created() {
-    this.getData();
+    if(this.link){//传过来link
+      this.getData();
+    }else{
+      this.getArtData();
+    }
+    
   },
   methods: {
-    getData() {
+    getArtData() {
       if (this.id) {
         let successCallback = data => {
           this.article = data;
+          //console.log(data);
         };
         let params = {
           id: this.id
@@ -32,25 +43,47 @@ export default {
           successCallback
         });
       }
+    },
+    getData(){
+      let successCallback=data=>{
+         this.article = data;
+        //console.log(data);
+      };
+      let params=this.link;
+      this.$store.dispatch({
+          type: "getHelp",
+          params,
+          successCallback
+        });
     }
   }
 };
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
 .article {
-  padding: 15px 20px 30px;
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
   overflow-y: auto;
 }
+.title-back{
+      background-color: #e66466;
+    color: #fff;
+    border-bottom: 1px #ddd dotted;
+    padding: .5rem;
+    div{
+      text-align: right;
+      font-size: .2rem;
+    }
+}
 .art_title {
   text-align: center;
   font-weight: 800;
-  color: #000;
+  color: #fff;
   line-height: 30px;
-  font-size: 20px;
+  font-size: .5rem;
+    margin-bottom: .3rem;
 }
 .art_content {
   text-align: left;

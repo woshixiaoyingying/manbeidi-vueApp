@@ -45,7 +45,7 @@ export default {
     let params = {securityCookie:authorization.getSecurityCookie()}
     http.post(`${settings.defaultUrl}/simpleApi/auto_login`,params)
      .then(res=>{
-       
+      // console.log(res);
       if(res.data.error){
         vm.$message.error(res.data.message);
         // 清除登录信息
@@ -74,7 +74,7 @@ export default {
   getMinePageData({commit},{successCallback}){
     http.get(`${settings.defaultUrl}/ucenterApi/index`)
     .then(res=>{
-      //console.log(res);
+     // console.log(res);
      if(res.data.error){
         vm.$message.error(res.data.message);
       }else{
@@ -134,7 +134,19 @@ export default {
   },
   //获取文章内容
   getArtContent({commit},{successCallback,params}){
-    http.get(`${settings.defaultUrl}/indexApi/notice_content/id/${params.id}`)
+    http.get(`${settings.defaultUrl}/indexApi/article/id/${params.id}`)
+    .then(res =>{
+      if(res.data.error){
+        vm.$message.error(res.data.message)
+      }else{
+        successCallback(res.data.message)
+      }
+    })
+  },
+  //获取走进我们、行业资讯等页面
+  getHelp({commit},{successCallback,params}){
+    console.log(params);
+    http.get(`${settings.defaultUrl}${params}`)
     .then(res =>{
       if(res.data.error){
         vm.$message.error(res.data.message)
@@ -593,6 +605,7 @@ export default {
   getflowRecordData({commit},{params,successCallback}){
     http.get(`${settings.defaultUrl}/ucenterApi/bonus_list`,{params})
     .then(res=>{
+      console.log(res);
       if(res.data.error){
         vm.$message.error(res.data.message);
       }else{

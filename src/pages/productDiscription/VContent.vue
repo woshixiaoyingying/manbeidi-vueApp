@@ -81,7 +81,7 @@ export default {
       margin: 0 auto;
       width: 0;
       height: 0.06rem;
-      background-color: #ff3535;
+      background-color: #00853a;
       border-radius: 0.3rem;
       margin-top: 0.3rem;
       transition: all 0.3s;

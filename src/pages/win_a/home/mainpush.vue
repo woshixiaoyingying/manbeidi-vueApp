@@ -35,7 +35,7 @@ export default {
             position: absolute;
         }
         .main-right{
-            background-image: url(/static/img/main.c32e993.png);
+            background-image: url('./images/main.png');
             background-size: 100%;
             background-repeat: no-repeat;
             position: absolute;

@@ -1,7 +1,7 @@
 <template>
   <div class="tab bg-white tixian-content" index="0" style="font-size:10px">
     <dd class="yue">
-      可用金额：
+      账户金额：
       <label class="f18 red">￥{{accountBalance.totals}}</label>
     </dd>
     <div class="tab-body">
@@ -140,7 +140,9 @@ export default {
   line-height: 60px;
   font-size: 13pt;
   padding: 0 20px;
-  position: relative;
+  //position: relative;
+  background-color: #00853a;
+  color: #fff;
 }
 .van-row {
   position: relative;
@@ -159,11 +161,11 @@ export default {
 }
 .btn_red.btn {
   margin: 0 auto;
-  border: 1px solid #ff6633;
-  color: #ff6633;
+  border: 1px solid #00853a;
+  color: #fff;
   text-align: center;
   border-radius: 4px;
-  background-color: #fff;
+  background-color: #00853a;
   line-height: 40px;
 }
 </style>

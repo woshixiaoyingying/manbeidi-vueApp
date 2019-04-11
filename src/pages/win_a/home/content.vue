@@ -55,7 +55,7 @@ export default {
     };
   },
   created(){
-    console.log('shangpin',this.goodsInfo)
+   // console.log('shangpin',this.goodsInfo)
   }
 };
 </script>

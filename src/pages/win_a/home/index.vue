@@ -202,7 +202,7 @@ export default {
     //获取缓存
     getCache() {
       let data = JSON.parse(localStorage.getItem("homePageData"));
-      console.log('获取缓存数据',data)
+      //console.log('获取缓存数据',data)
       if (!data) {
         return;
       }

@@ -1,7 +1,7 @@
 <template>
   <div class="art" :style="fitPhoneTop">
     <div class="header" >
-      <van-nav-bar title="琞珍商城" @click-left="$router.go(-1)" left-arrow>
+      <van-nav-bar :title="title" @click-left="$router.go(-1)" left-arrow>
           <!-- <img src="static/images/share.png" slot="right" class="share"> -->
         </van-nav-bar>
     </div>
@@ -28,24 +28,39 @@ export default {
     }),
       category_id(){
           return this.$route.query.category_id
+      },
+      title(){
+        return this.$route.query.title
       }
   },
   created(){
-    this.getArtList()
+    this.getList();
   },
 
     methods:{
-        getArtList(){
-            let successCallback = data=>{
-            this.artInfo = data;
+      getList(){
+      let successCallback=data=>{
+         this.artInfo = data.data;
+        console.log(data);
+      };
+      let params=this.$route.query.link;
+      this.$store.dispatch({
+          type: "getHelp",
+          params,
+          successCallback
+        });
+    }
+        // getArtList(){
+        //     let successCallback = data=>{
+        //     this.artInfo = data;
 
-          }
-          let params = {
-            category_id:this.category_id,
+        //   }
+        //   let params = {
+        //     category_id:this.category_id,
            
-          }
-          this.$store.dispatch({type:'getArtList',params,successCallback})
-        }
+        //   }
+        //   this.$store.dispatch({type:'getArtList',params,successCallback})
+        // }
     }
 };
 </script>

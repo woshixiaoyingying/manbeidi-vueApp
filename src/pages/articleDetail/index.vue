@@ -1,11 +1,19 @@
 <template>
   <div class="art" :style="fitPhoneTop">
     <div class="header" >
-      <van-nav-bar title="琞珍商城" @click-left="$router.go(-1)" left-arrow>
-       <!-- <img src="static/images/share.png" slot="right" class="share"> -->
+      <!--<van-nav-bar title="琞珍商城" @click-left="$router.go(-1)" left-arrow>
+            <img src="static/images/share.png" slot="right" class="share"> 
+        </van-nav-bar>-->
+        <van-nav-bar :title='title' >
+          <router-link :to="{path:'/win_a/home' }" slot="left">
+            <van-icon name="wap-home" size='0.5rem' />
+          </router-link>
+          <router-link :to="{path:'/win_a/shopcart' }"  slot="right">
+             <van-icon name="shopping-cart-o" size='0.5rem' />
+          </router-link>
         </van-nav-bar>
     </div>
-    <art-content :id="id"></art-content>
+    <art-content  :id='id' :link='link' ></art-content>
   </div>
 </template>
 
@@ -23,8 +31,22 @@ export default {
     }),
       id(){
           return this.$route.query.id
+      },
+      title(){
+        return this.$route.query.title
+      },
+      link(){
+        if(this.$route.query.link){
+          return this.$route.query.link;
+        }else{
+          return null;
+        }
       }
-  }
+  },
+  methods:{
+    
+  },
+  
 };
 </script>
 
@@ -41,5 +63,8 @@ export default {
   position: relative;
   transform: translate(0%,60%);
   width:20px;
+}
+.van-nav-bar .van-icon{
+  color: #929292;
 }
 </style>

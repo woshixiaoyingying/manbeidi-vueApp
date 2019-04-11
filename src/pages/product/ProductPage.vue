@@ -247,6 +247,7 @@ export default {
 
     getData() {
       let successCallback = data => {
+        console.log(data);
         this.productData = data;
         this.comment = data.comment;
       };
@@ -358,7 +359,7 @@ export default {
       this.show = !this.show;
     },
     //分享给微信朋友
-    sharePenguin(){
+    sharePeng(){
       
     },
     //分享到朋友圈
@@ -413,9 +414,10 @@ export default {
     }
   }
   .pro-name {
-    background-color: #fff;
-    line-height: 0.9rem;
-    font-size: 0.4rem;
+    background-color: #efefef;
+    color: #F7762E;
+    line-height: 0.8rem;
+    font-size: 0.3rem;
     padding-left: 0.2rem;
     box-sizing: border-box;
   }
@@ -441,7 +443,7 @@ export default {
         left: 0.1rem;
       }
       color: #de0000;
-      font-size: 0.45rem;
+      font-size: 0.35rem;
       line-height: 0.8rem;
       height: 0.8rem;
       float: left;
