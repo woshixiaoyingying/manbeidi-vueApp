@@ -5,9 +5,15 @@
             <img src="static/images/share.png" slot="right" class="share"> 
         </van-nav-bar>-->
         <van-nav-bar :title='title' >
-          <router-link :to="{path:'/win_a/home' }" slot="left">
+         <!-- <router-link :to="{path:'/win_a/home' }" slot="left">
             <van-icon name="wap-home" size='0.5rem' />
-          </router-link>
+          </router-link> -->
+          <div slot="left" @click="$router.go(-1)">
+            <van-icon name='arrow-left'  size='0.5rem'/>
+          </div>
+           
+          <!-- <img src="static/images/share.png" slot="right" class="share"> -->
+          
           <router-link :to="{path:'/win_a/shopcart' }"  slot="right">
              <van-icon name="shopping-cart-o" size='0.5rem' />
           </router-link>

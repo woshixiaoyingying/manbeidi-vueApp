@@ -14,7 +14,7 @@
           </router-link>
       </li>
       <li class="nav-item" >
-          <router-link :to="{path:'//article/list', query:{id:cpzx.id,title:cpzx.name,link:cpzx.link}}" class="nav-link">
+          <router-link :to="{path:'/product/main', query:{id:cpzx.id,title:cpzx.name,link:cpzx.link}}" class="nav-link">
             <img :src="cpzx.cacheImg" class="nav-pic">
             <span class="nav-text">{{cpzx.name}}</span>
           </router-link>

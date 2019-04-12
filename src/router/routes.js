@@ -467,5 +467,9 @@ export default [{
     path: "//ucenter/gifts/GetGiftsDetail",
     component: () => import("@/pages/ucenterGetGiftsDetail")
   },
-  
+  //产品中心页
+  {
+    path:'/product/main',
+    component:()=>import('@/pages/productMain')
+  }
 ]

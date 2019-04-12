@@ -36,7 +36,7 @@
               <span class="renminbi">￥</span>
               {{sell_price}}
             </div>
-            <div class="jifen">(返{{point}}金豆)</div>
+            <!--<div class="jifen" >(返{{point}}金豆)</div>-->
           </div>
           <div class="guige clearfix">
             <div class="guige1 clearfix" v-for="(value,key) in specs" :key="key">

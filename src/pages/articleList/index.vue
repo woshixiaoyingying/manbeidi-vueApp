@@ -2,10 +2,21 @@
   <div class="art" :style="fitPhoneTop">
     <div class="header" >
       <van-nav-bar :title="title" @click-left="$router.go(-1)" left-arrow>
+          <router-link :to="{path:'/win_a/home' }" slot="left">
+            <van-icon name="wap-home" size='0.5rem' />
+          </router-link> 
           <!-- <img src="static/images/share.png" slot="right" class="share"> -->
         </van-nav-bar>
     </div>
     <art-list :artInfo="artInfo"></art-list>
+    <div class="bottom" :style="fitPhoneBottom">
+      <van-pagination
+        v-if="count>0"
+        v-model="page"
+        :total-items="count*1"
+        :items-per-page="pageSize"
+      />
+    </div>
   </div>
 </template>
 
@@ -18,7 +29,10 @@ export default {
     },
     data(){
         return {
-            artInfo:[]
+            artInfo:[],
+            page:1,
+            pageSize:20,
+            count:0,
         }
     },
     computed:{
@@ -26,12 +40,12 @@ export default {
       fitPhoneTop:"fitPhoneTop",
       fitPhoneBottom:"fitPhoneBottom"
     }),
-      category_id(){
-          return this.$route.query.category_id
-      },
       title(){
         return this.$route.query.title
-      }
+      },
+      id(){
+      return this.$route.query.id
+    },
   },
   created(){
     this.getList();
@@ -41,11 +55,17 @@ export default {
       getList(){
       let successCallback=data=>{
          this.artInfo = data.data;
-        console.log(data);
+         this.page=data.page.page;
+         this.pageSize=data.page.pageSize;
+         this.count = data.page.total;
+        //console.log(data);
       };
-      let params=this.$route.query.link;
+      let url=this.$route.query.link;
+      let {page,pageSize} = this;
+      let params = {page,pageSize};
       this.$store.dispatch({
-          type: "getHelp",
+          type: "getInformationList",
+          url,
           params,
           successCallback
         });

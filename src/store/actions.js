@@ -143,9 +143,9 @@ export default {
       }
     })
   },
-  //获取走进我们、行业资讯等页面
+  //获取走进我们、企业文化、联系我们页面
   getHelp({commit},{successCallback,params}){
-    console.log(params);
+   // console.log(params);
     http.get(`${settings.defaultUrl}${params}`)
     .then(res =>{
       if(res.data.error){
@@ -155,6 +155,18 @@ export default {
       }
     })
   },
+  //获取行业资讯页面
+  getInformationList({commit},{successCallback,url,params}){
+    //console.log(url,{params:params});
+     http.get(`${settings.defaultUrl}${url}`,{params})
+     .then(res =>{
+       if(res.data.error){
+         vm.$message.error(res.data.message)
+       }else{
+         successCallback(res.data.message)
+       }
+     })
+   },
   //获取收益页数据
   getprofitPageData({commit},{successCallback}){
     http.get(`${settings.defaultUrl}/ucenterApi/income`)

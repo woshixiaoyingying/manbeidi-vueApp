@@ -154,8 +154,8 @@
           </router-link>
         </van-col>
         <van-col span="6">
-          <router-link to="//ucenter/member">
-            <img src="static/images/shuju.png" class="icon_i">我的数据
+          <router-link to="/win_a/extension">
+            <img src="static/images/shuju.png" class="icon_i">我的推广
           </router-link>
         </van-col>
         <van-col span="6">
