@@ -27,7 +27,7 @@ import 'mint-ui/lib/style.css'
 // import VConsole from 'vconsole/dist/vconsole.min.js'
 
 //前端调试工具，解决真机测试不便的问题可以像chrome控制台一样输出json数据
-// new VConsole()
+//new VConsole()
 
 //封装了hammer.js的vue插件。
 // Vue.use(VueTouch, {name: 'v-touch'})

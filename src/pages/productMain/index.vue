@@ -15,7 +15,8 @@
             <li >价格<i></i></li>
             <li >最新<i></i></li>
         </ul>
-        <products :data='productData'></products>
+        <!-- {{productData}} -->
+        <products :productData='productData'></products>
         <div class="bottom" :style="fitPhoneBottom">
             <van-pagination
               v-if="count>0"
@@ -53,7 +54,7 @@ export default{
           page:1,
           pageSize:10,
           count:0,
-          sort:null,
+          sort:'',
       }
   },
   created(){
@@ -91,7 +92,7 @@ export default{
       sortType(text){
         switch(text){
             case '默认':
-            this.sort=null;
+            this.sort='';
             break;
             case '销量':
             this.sort=1;
@@ -109,7 +110,7 @@ export default{
         this.getData();
       },
       setData(data){
-        console.log(data);
+        //console.log(data);
          localStorage.setItem("productDatas",JSON.stringify(data));
         this.productData=data.goods.data;
          this.page=data.goods.page.page;
@@ -127,7 +128,7 @@ export default{
           });;
       };
       let url=this.link;
-      console.log(url);
+      //console.log(url);
       let {page,pageSize,sort} = this;
       let params = {page,pageSize,sort};
       this.$store.dispatch({

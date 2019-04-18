@@ -44,6 +44,7 @@
         height: 1.5rem;
         top: 4.7rem;
         z-index: 10;
+        width: 100%;
         .notice-left{
             font-size: 0.3rem;
             width: 20%;
@@ -59,7 +60,7 @@
             }
         }
         .notice-right{
-            width: 80%;
+            flex: 1;
             height: 1.2rem;
             background-color: #fff;
             border-top-right-radius: .3rem;
@@ -84,7 +85,12 @@
             }
         }
     }
-    
+    .van-swipe__track{
+        width:100%;
+    }
+    .notice-news .notice-right .notice-right-item{
+        width:100%;
+    }
     
     .notice-news:before {
        // content: ' ';

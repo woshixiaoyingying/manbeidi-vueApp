@@ -43,6 +43,7 @@
                       <dd class="login_box">
                         <span class="inputBorder">
                           <input
+                            cursor-spacing='20'
                             name="autologin"
                             id="readme"
                             type="checkbox"

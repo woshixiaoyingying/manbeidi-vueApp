@@ -45,8 +45,10 @@ export default {
             padding-top: .8rem;
             div{
                 color: #fff;
-                line-height: .3rem;
-                font-size: .2rem;
+                line-height: .35rem;
+                font-size: .25rem;
+                font-weight: 600;
+                padding-right: 5px;
             }
         }
     }

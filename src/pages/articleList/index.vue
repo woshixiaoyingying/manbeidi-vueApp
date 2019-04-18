@@ -1,7 +1,7 @@
 <template>
   <div class="art" :style="fitPhoneTop">
     <div class="header" >
-      <van-nav-bar :title="title" @click-left="$router.go(-1)" left-arrow>
+      <van-nav-bar :title="title"  left-arrow>
           <router-link :to="{path:'/win_a/home' }" slot="left">
             <van-icon name="wap-home" size='0.5rem' />
           </router-link> 

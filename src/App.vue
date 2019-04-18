@@ -34,6 +34,7 @@ export default {
     //检测登录状态
     this.checkLoginStatus();
     this.height =document.body.offsetHeight;
+   // this.$store.dispatch({type:"getAreaData"})
   },
   watch: {
     //路由切换动效
@@ -54,7 +55,7 @@ export default {
       //使iphone输入框能够自动获取焦点
       $plus.inputAutofocus()
       plus.webview.currentWebview().setStyle({
-          softinputMode: "adjustPan"  // 弹出软键盘时自动改变webview的高度
+          softinputMode: "adjustPan",  // 弹出软键盘时自动改变webview的高度
       });
       plus.screen.lockOrientation("portrait-primary")  //锁定竖屏
       plus.navigator.setStatusBarBackground('#a3935e') //设置状态栏背景色
@@ -63,6 +64,7 @@ export default {
       this.setPagePosition()
       this.scheme()
       this.prefetchURL()
+      // this.addEventListenerAndroidInput();
     })
 
   },
@@ -128,7 +130,20 @@ export default {
       }else{
         this.$message.error('登录状态已过期！');
       }
-    }
+    },
+    //监听安卓机的输入框
+    addEventListenerAndroidInput(){
+      if (plus.os.name=='Android') {
+          window.addEventListener('resize', function () {
+              if (document.activeElement.tagName == 'INPUT' || document.activeElement.tagName == 'TEXTAREA') {
+                  window.setTimeout(function () {
+                    console.log('App.vue+TEXTAREA');
+                      document.activeElement.scrollIntoView();
+                  }, 0);
+              }
+          })
+      }
+    },
   }
 }
 </script>

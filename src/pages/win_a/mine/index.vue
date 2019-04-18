@@ -1,6 +1,6 @@
 <template>
-  <div class="mine">
-    <van-nav-bar title='用户中心' >
+  <div class="mine" :style="fitPhoneTop">
+    <van-nav-bar title='用户中心'  >
       <router-link :to="{path:'/win_a/home' }" slot="left">
         <van-icon name="wap-home" size='0.5rem' />
       </router-link>

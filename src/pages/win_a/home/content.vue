@@ -133,16 +133,16 @@ export default {
     line-height: .4rem;
 }
 
-.mcon .shou {
-  position: absolute;
-  right: 0;
-  top: 5px;
-  color: #f8c301;
-  font-size: 11pt;
-}
+// .mcon .shou {
+//   position: absolute;
+//   right: 0;
+//   top: 5px;
+//   color: #f8c301;
+//   font-size: 11pt;
+// }
 
 .pro-list-all .mcon .info {
-  font-size: .1rem;
+  font-size: .2rem;
     color: #d71d1d;
     margin-top: .1rem;
 }

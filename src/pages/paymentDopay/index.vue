@@ -26,7 +26,7 @@ export default {
   props:["query"],
   data () {
     return {
-      
+      w:null
     }
   },
   created(){
@@ -42,108 +42,93 @@ export default {
     })
   },
   mounted() {
-    console.log(this.query.order_id)
-    //console.log(sessionid);
+    console.log(this.query);
+    // console.log(sessionid);
     
     $plus.plusReady(()=>{
-      setTimeout(this.showView,400)
-      // if(($plus.systemType()=='Android') && (this.query.payment_id == 2)){
-      //   //app接口支付
-      //   // this.appInterfacePayment()
-      //   //let is_app = 1;//后台判断是否来自app
-      //   let sessionid = authorization.getSessionid()
-      //   plus.runtime.openURL(`${settings.defaultUrl}/payment/doPay/app_session_id/${sessionid}/payment_id/${this.query.payment_id}/order_id/${this.query.order_id}`)
+      // setTimeout(this.showView,400)
+      if(($plus.systemType()=='Android') && (this.query.payment_id == 2)){
 
-         
-      // }else{
-      //   setTimeout(this.showView,400)
-      // }
+       // app接口支付
+        this.appInterfacePayment()
+        let isApp = 1;//后台判断是否来自app
+        let sessionid = authorization.getSessionid()
+        plus.runtime.openURL(`${settings.defaultUrl}/payment/doPay/app_session_id/${sessionid}/payment_id/${this.query.payment_id}/order_id/${this.query.order_id}`);
+      }else{
+        setTimeout(this.showView,400)
+      }
     })
-    // this.axiosGet()
+    this.axiosGet()
   },
   methods:{
     //app接口支付    
-    // appInterfacePayment(){
+    appInterfacePayment(){
 
 
-    //   let successCallback = data =>{
-    //     console.log(data)
-    //   }
-    //   let params = { 
-    //     payment_id: 2,
-    //     order_id: this.query.order_id
-    //   }
+      let successCallback = data =>{
+        console.log(data)
+      }
+      let params = { 
+        payment_id: 2,
+        order_id: this.query.order_id
+      }
 
-    //   this.$store.dispatch({type:"appInterfacePayment",params,successCallback})
-
-
-    // return false 
+      this.$store.dispatch({type:"appInterfacePayment",params,successCallback})
 
 
+    return false 
+      let channel=null;
 
-    //   let channel=null;
+      var ALIPAYSERVER='http://demo.dcloud.net.cn/helloh5/payment/alipay.php?total=';
+      var WXPAYSERVER='http://demo.dcloud.net.cn/helloh5/payment/wxpay.php?total=';
+      // 2. 发起支付请求
+      function pay(id){
+          // 从服务器请求支付订单
+          var PAYSERVER='';
+          if(id=='alipay'){
+              PAYSERVER=ALIPAYSERVER;
+          }else if(id=='wxpay'){
+              PAYSERVER=WXPAYSERVER;
+          }else{
+              plus.nativeUI.alert("不支持此支付通道！",null,"捐赠");
+              return;
+          }
 
-      
-
-    //   var ALIPAYSERVER='http://demo.dcloud.net.cn/helloh5/payment/alipay.php?total=';
-    //   var WXPAYSERVER='http://demo.dcloud.net.cn/helloh5/payment/wxpay.php?total=';
-    //   // 2. 发起支付请求
-    //   function pay(id){
-    //       // 从服务器请求支付订单
-    //       var PAYSERVER='';
-    //       if(id=='alipay'){
-    //           PAYSERVER=ALIPAYSERVER;
-    //       }else if(id=='wxpay'){
-    //           PAYSERVER=WXPAYSERVER;
-    //       }else{
-    //           plus.nativeUI.alert("不支持此支付通道！",null,"捐赠");
-    //           return;
-    //       }
-
-    //       var xhr=new XMLHttpRequest();
+          var xhr=new XMLHttpRequest();
           
-    //       xhr.onreadystatechange=function(){
-    //           switch(xhr.readyState){
-    //               case 4:
-    //                 if(xhr.status==200){
+          xhr.onreadystatechange=function(){
+              switch(xhr.readyState){
+                  case 4:
+                    if(xhr.status==200){
                         
-    //                     plus.payment.request(channel,xhr.responseText,function(result){
-    //                         plus.nativeUI.alert("支付成功！",function(){
-    //                             back();
-    //                         });
-    //                     },function(error){
-    //                         plus.nativeUI.alert("支付失败：" + error.code);
-    //                     });
-    //                 }else{
-    //                     alert("获取订单信息失败！");
-    //                 }
-    //               break;
-    //               default:
-    //               break;
-    //           }
-    //       }
-    //       xhr.open('GET',PAYSERVER);
-    //       xhr.send();
-    //   }
+                        plus.payment.request(channel,xhr.responseText,function(result){
+                            plus.nativeUI.alert("支付成功！",function(){
+                                back();
+                            });
+                        },function(error){
+                            plus.nativeUI.alert("支付失败：" + error.code);
+                        });
+                    }else{
+                        alert("获取订单信息失败！");
+                    }
+                  break;
+                  default:
+                  break;
+              }
+          }
+          xhr.open('GET',PAYSERVER);
+          xhr.send();
+      }
 
-    //   // 1. 获取支付通道
-    //   plus.payment.getChannels(function(channels){
-    //       console.log('获取支付通道成功',JSON.stringify(channels))
-    //       channel=channels[0]
-    //       pay(channel.id)
-    //   },function(e){
-    //       alert("获取支付通道失败："+e.message)
-    //   });
-
-
-
-
-    // },
-
-
-
-
-
+      // 1. 获取支付通道
+      plus.payment.getChannels(function(channels){
+          console.log('获取支付通道成功',JSON.stringify(channels))
+          channel=channels[0]
+          pay(channel.id)
+      },function(e){
+          alert("获取支付通道失败："+e.message)
+      });
+    },
 
     //h5支付
     showView(){
@@ -155,7 +140,6 @@ export default {
         // let height = this.$refs.doPay.clientHeight + 'px'
 
         let sessionid = authorization.getSessionid()
-
         let additionalHttpHeaders={
           'SESSION-ID':sessionid,
           'Referer':settings.defaultUrl
@@ -167,17 +151,16 @@ export default {
           ...this.query,
           // postUrl:`${settings.defaultUrl}/payment/dopay/app_session_id/${sessionid}`,
           //getUrl:"www.baidu.com",
-          getUrl:`${settings.defaultUrl}/payment/dopay/app_session_id/${sessionid}/payment_id/${this.query.payment_id}/order_id/${this.query.order_id}/is_app/1`,
+          getUrl:`${settings.defaultUrl}/payment/dopay/app_session_id/${sessionid}/payment_id/${this.query.payment_id}/order_id/${this.query.order_id}/isApp/1`,
           Referer:`www.huizhongtang.com://fromWX_orderno_${this.query.order_id}`
         }
 
-        let w = plus.webview.create( url, id, styles, extras);
-        //console.log(JSON.stringify(w))
-        //plus.webview.open( url, id, styles, extras);
-        w.show()//显示窗口
+        this.w = plus.webview.create( url, id, styles, extras);
+        console.log(this.w.id)
+        // plus.webview.open( url, id, styles, extras);
+        this.w.show()//显示窗口
       }
     },
-
     axiosGet(){
 
       // axios.interceptors.request.use(
@@ -191,13 +174,13 @@ export default {
       // )
 
       let sessionid = authorization.getSessionid()
-      let urlString = `${settings.defaultUrl}/payment/dopay/app_session_id/${sessionid}/payment_id/${this.query.payment_id}/order_id/${this.query.order_id}?is_app=1`
+      let urlString = `${settings.defaultUrl}/payment/dopay/app_session_id/${sessionid}/payment_id/${this.query.payment_id}/order_id/${this.query.order_id}?isApp=1`
       axios.get(urlString, 
-        {
-          headers: {
-            abcedfg:'99999'
-          },
-        }
+        // {
+        //   headers: {
+        //     abcedfg:'99999'
+        //   },
+        // }
       )
       .then(res=>{
         console.log(res)
@@ -205,12 +188,12 @@ export default {
       .catch(err=>{
         console.log(err)
       })
-
     }
   },
   destroyed(){
+    console.log('destroyed');
     if(window.plus){
-      plus.webview.close('zhifuzhong');
+      plus.webview.close(this.w);
     }
   }
 }
@@ -232,6 +215,7 @@ export default {
 }
 .content{
   flex-grow:1;
+  //height: 50%;
   overflow-y: auto;
   text-align: center;
 }

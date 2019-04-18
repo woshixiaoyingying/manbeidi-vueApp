@@ -81,6 +81,7 @@ export default {
                 -webkit-line-clamp: 1;
                 color: #000;
                 font-size: .3rem;
+                line-height: .3rem;
             }
             .new-content{
                 overflow: hidden;

@@ -8,7 +8,7 @@
         </a>
       </div>
       <div class="container">
-        <div class="nTab nTab-mytab">
+        <div class="nTab nTab-mytab" :class="marginBottom?'marginBottom':null">
           <!--<div class="TabTitle">
             <ul id="myTab2">
               <li class="normal" @click="$router.push('/login')">用户登录</li>
@@ -18,11 +18,11 @@
           <div class="simple_content_div">
             <el-form class="reg-form" :model="ruleForm" :rules="rules" ref="ruleForm">
               <el-form-item label prop="name">
-                <el-input v-model="ruleForm.name" placeholder="账号"></el-input>
+                <el-input v-model="ruleForm.name"  placeholder="账号"></el-input>
               </el-form-item>
 
               <el-form-item label prop="real_name">
-                <el-input v-model="ruleForm.real_name" placeholder="真实姓名"></el-input>
+                <el-input v-model="ruleForm.real_name"  placeholder="真实姓名"></el-input>
               </el-form-item>
 
               <el-form-item label prop="area">
@@ -36,19 +36,19 @@
               </el-form-item>
 
               <el-form-item label prop="mobile" :error="accountError">
-                <el-input v-model="ruleForm.mobile" placeholder="手机号"></el-input>
+                <el-input v-model="ruleForm.mobile"  placeholder="手机号"></el-input>
               </el-form-item>
 
               <el-form-item label prop="password">
-                <el-input type="password" v-model="ruleForm.password" placeholder="密码"></el-input>
+                <el-input type="password" v-model="ruleForm.password"  placeholder="密码"></el-input>
               </el-form-item>
 
               <el-form-item label prop="repassword">
-                <el-input type="password" v-model="ruleForm.repassword" placeholder="确认密码"></el-input>
+                <el-input type="password" v-model="ruleForm.repassword"  placeholder="确认密码"></el-input>
               </el-form-item>
 
               <el-form-item label prop="rec_name">
-                <el-input v-model="ruleForm.rec_name" placeholder="推荐人账号"></el-input>
+                <el-input v-model="ruleForm.rec_name" @focus="focus" @blur="blur" placeholder="推荐人账号"></el-input>
               </el-form-item>
 
               <el-form-item label prop="mobile_code" v-if="reg_sms_open==1">
@@ -116,6 +116,7 @@ export default {
     return {
       dialogVisible: false,
       readme: false,
+      marginBottom:false,
       ruleForm: {
         name: "",
         mobile: "",
@@ -304,6 +305,14 @@ export default {
           this.sendCompletion();
         }
       }, 1000);
+    },
+    focus(){
+       if(plus.os.name=='Android'){
+          this.marginBottom=true;
+       }
+    },
+    blur(){
+      this.marginBottom=false;
     }
   }
 };
@@ -610,6 +619,9 @@ export default {
       }
     }
   }
+}
+.marginBottom{
+  margin-bottom: 50%;
 }
 </style>
 

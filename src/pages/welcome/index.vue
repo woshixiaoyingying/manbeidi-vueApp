@@ -1,9 +1,9 @@
 <template>
   <div class="welcome" :style="fitPhoneBottom">
    <van-swipe :show-indicators="false" :loop="false">
-      <van-swipe-item><img src="static/images/1.jpg" alt="" class="item_img"></van-swipe-item>
+      <!-- <van-swipe-item><img src="static/images/1.jpg" alt="" class="item_img"></van-swipe-item>
       <van-swipe-item><img src="static/images/2.jpg" alt="" class="item_img"></van-swipe-item>
-      <van-swipe-item><img src="static/images/3.jpg" alt="" class="item_img"></van-swipe-item>
+      <van-swipe-item><img src="static/images/3.jpg" alt="" class="item_img"></van-swipe-item> -->
       <van-swipe-item><img src="static/images/4.jpg" alt="" class="item_img"><img src="static/images/OpenHealth.jpg" alt="" class="openHealth" @click="$router.push(`/win_a/home`)"></van-swipe-item>
     </van-swipe>
   </div>
@@ -41,8 +41,8 @@ export default {
 
 .item_img {
   bottom: 0;
-  max-height: 100%;
-  max-width: 100%;
+  height: 100%;
+  //max-width: 100%;
   display: block;
   position: absolute;
   left: 50%;
@@ -54,8 +54,9 @@ export default {
 .openHealth{
     width: 30%;
     position: absolute;
-    bottom: 11%;
+    bottom: 39%;
     left: 50%;
-    transform: translate(-50%,0)
+    transform: translate(-50%,0);
+    border-radius: 20px;
 }
 </style>

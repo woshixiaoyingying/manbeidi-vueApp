@@ -3,7 +3,7 @@
 
 
 
-  <el-form :model="ruleForm" :rules="rules" ref="ruleForm">
+  <el-form :model="ruleForm" :rules="rules" ref="ruleForm" :class="padding?'padding':''">
 
       <el-form-item label="账号">
         <span class="disabel" >{{`${ruleForm.name}`}}</span>
@@ -68,6 +68,7 @@
           alt="联系人电话，11位手机号码" 
           ref="mobileInput"
           @click="textareaTab(mobileInput)"
+          :disabled="true"
           ></el-input>
         </el-form-item>
 			<!-- </dd> -->
@@ -75,12 +76,13 @@
 
         <el-form-item label="省份/直辖市" prop="province">
            <br/>
-          <el-select v-model="ruleForm.province" placeholder="请选择" style="width:100%;" :disabled="true">
+          <el-select v-model="ruleForm.province" placeholder="请选择" style="width:100%;"  :disabled="true">
             <el-option
               v-for="(value,key) in provinceList"
               :key="key"
               :label="value.t"
               :value="key">
+             
             </el-option>
           </el-select>
         </el-form-item>
@@ -92,7 +94,7 @@
 
             <el-form-item label="市" prop="city">
               <br/>
-              <el-select v-model="ruleForm.city" placeholder="请选择" style="width:100%;" :disabled="true">
+              <el-select v-model="ruleForm.city" placeholder="请选择" style="width:100%;"  :disabled="true">
                 <el-option
                   v-for="(value,key) in cityList"
                   :key="key"
@@ -119,12 +121,14 @@
 			    <!-- <dd> -->
             <el-form-item label="详细地址" prop="addr">
               <textarea
+                cursor-spacing='20'
                 class="address-textarea"
                 :rows="4"
                 placeholder="路名或街道地址，门牌号。"
                 v-model="ruleForm.addr"
                 ref="addressTextarea"
-                @click="textareaTab(addressTextarea)"
+                @focus="textareaFocus"
+                @blur="textareaBlur"
                 >
               </textarea>
             </el-form-item>
@@ -151,6 +155,7 @@ export default {
         county:"",
         addr:"",
       },
+      padding:false,
       rules:{
         real_name: [
           { required: true, message: '请输入真实姓名' ,trigger: 'blur'},
@@ -180,8 +185,11 @@ export default {
     }
   },
   created(){
-    this.getData()
     this.getAreaData()
+  },
+  mounted () {
+    this.getData()
+
   },
   computed:{
     ...mapGetters({
@@ -205,6 +213,7 @@ export default {
 
   },
   watch:{
+    
     provinceList(list){
       for(let key in list){
         if(key==this.ruleForm.province){
@@ -213,30 +222,31 @@ export default {
       }
       this.ruleForm.province=''
     },
-    cityList(list){
-      for(let key in list){
-        if(key==this.ruleForm.city){
+    // cityList(list){
+    //   for(let key in list){
+    //     if(key==this.ruleForm.city){
           
-          return 
-        }
-      }
-      this.ruleForm.city=''
-    },
-    countyList(list){
-      for(let key in list){
-        if(key==this.ruleForm.county){
-          return 
-        }
-      }
-      this.ruleForm.county=''
-    },
+    //       return 
+    //     }
+    //   }
+    //   this.ruleForm.city=''
+    // },
+    // countyList(list){
+    //   for(let key in list){
+    //     if(key==this.ruleForm.county){
+    //       return 
+    //     }
+    //   }
+    //   this.ruleForm.county=''
+    // },
 
   },
   methods:{
     getData(){
       let successCallback = data=>{
+        console.log(data);
         this.ruleForm={...this.ruleForm,...data};
-        
+        console.log(this.ruleForm);
       }
       this.$store.dispatch({type:'getUcenterInfo',successCallback})
     },
@@ -246,7 +256,11 @@ export default {
     },
 
     submitForm(){
-      let params = {...this.ruleForm}
+      let params = {
+        sex:this.ruleForm.sex,
+        birthday:this.ruleForm.birthday,
+        addr:this.ruleForm.addr
+      }
      
       let successCallback = data => {
         this.$router.go(-1)
@@ -270,12 +284,17 @@ export default {
     },
 
     textareaTab(element){
-      this.$refs[element].focus()
+      this.$refs.addressTextarea.focus();
+    },
+    textareaFocus(){
+      if(plus.os.name=='Android'){
+        this.padding=true;
+      }
+    },
+    textareaBlur(){
+      this.padding=false;
     }
   },
-  mounted() {
-
-  }
 }
 </script>
 
@@ -324,5 +343,8 @@ export default {
     border: 1px solid #d7dae2;
     min-height: 100px;
   }
+}
+.ucenter-info-content .padding{
+  padding-bottom: 60%;
 }
 </style>

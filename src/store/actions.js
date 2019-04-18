@@ -157,7 +157,6 @@ export default {
   },
   //获取行业资讯页面
   getInformationList({commit},{successCallback,url,params}){
-    //console.log(url,{params:params});
      http.get(`${settings.defaultUrl}${url}`,{params})
      .then(res =>{
        if(res.data.error){
@@ -818,7 +817,7 @@ export default {
 
   //请求hbuilder支付接口需要的订单信息
   appInterfacePayment({commit},{params,successCallback}){
-    http.post(`${settings.defaultUrl}/paymentApi/doPay`,params)
+    http.post(`${settings.defaultUrl}/payment/doPay`,params)
     .then(res=>{
       if(res.data.error){
         vm.$message.error(res.data.message);

@@ -40,6 +40,7 @@ export default {
   methods:{
     getData(){
       let successCallback = data=>{
+        console.log(data);
         this.orderDetails = data
       }
       let params = {id:this.$route.params.id}

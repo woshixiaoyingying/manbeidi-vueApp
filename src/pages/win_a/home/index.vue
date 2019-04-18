@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <header class="g-header-container">
+    <header class="g-header-container" :style="fitPhoneTop">
      <!-- <home-header :header_category_id="notice_category_id"></home-header> -->
      <Search @toggleBar="toggleBtn"></Search>
     </header>
@@ -85,6 +85,7 @@ export default {
     this.getCache();
     this.getData();
     this.getAdvData();
+    
   },
   methods: {
     onLoad() {
@@ -231,7 +232,7 @@ export default {
        // console.log(data);
         let {product, ads, low_price, main_push, ztt,article,com_art,nav,rec ,news,ad_pic} = data;
         let item;
-        this.navInfo = [];//清空缓存当中的信息
+        //this.navInfo = [];//清空缓存当中的信息
         this.navInfo=nav;
         this.news=news;
         this.adpic=ad_pic.content;

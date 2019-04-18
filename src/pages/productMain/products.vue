@@ -1,10 +1,11 @@
 <template>
     <div class="products">
-        <ul>
-            <li v-for="(item,index) in data" :key='index'>
+        <ul  v-for="(dataArry,i) in dealData" :key='i'>
+            <!-- {{dealData}} -->
+            <li v-for="(item,index) in dataArry" :key='index' @click="$router.push(`///product/${item.id}`)">
                 <img :src="item.cacheImg" alt="">
                 <p>{{item.name}}</p>
-                <p>{{item.sell_price}}</p>
+                <p>￥{{item.sell_price}}</p>
             </li>
         </ul>
     </div>
@@ -12,11 +13,29 @@
 <script>
 export default{
     name:'products',
-    props:['data'],
+    props:['productData'],
+    computed:{
+        dealData(){
+           let result=[];
+            for(var i=0;i<this.productData.length;i+=2){
+                result.push(this.productData.slice(i,i+2));
+            }
+            return result;
+        }
+    },
+    // data(){
+    //     return{
+    //         //dealData:[]
+    //     }
+    // },
     created(){
-        console.log(this.data);
+        //console.log(this.data);
+
+    },
+    methods:{
+        
     }
-}
+}    
 </script>
 <style lang="scss" scoped> 
 .products{
@@ -24,22 +43,26 @@ export default{
     -ms-flex-positive: 1;
     flex-grow: 1;
     overflow-y: auto;
+    margin: 10px 0;
     ul{
-        text-align:center;
+        border-top: 1px solid #efefef;
         li{
             display:inline-block;
-            width:48%;
+            width:50%;
             padding:.2rem;
+            border-right: 1px solid #efefef;
             img{
                 width:100%;
             }
             p{
                 font-weight:600;
                 font-size:.3rem;
+                line-height: .3rem;
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 width:100%;
+                margin-top: 5px;
             }
         }
     } 
