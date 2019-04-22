@@ -17,21 +17,31 @@ let $plus = {
   //判断是否iphonex
   isIphoneX(){
     // console.log(plus.device.model)
-    // alert(plus.device.model)
-    if(window.innerWidth === 375 && window.innerHeight === 812 && window.devicePixelRatio === 3){
-      return true
+    if(plus.os.name=="IOS"){
+      alert('iphone')
+      if(window.innerWidth === 375 && window.innerHeight === 812 && window.devicePixelRatio === 3){
+        // alert('iphoneX or iphoneXS');
+        return true
+      }else if(window.innerWidth === 414 && window.innerHeight === 896 ){
+        // alert('iphoneXS Max or iphoneXR');
+        return true
+      }
     }
+    
     return false
   },
   //判断状态栏和底部的padding
   safeArea(){
     //判断系统和状态栏高度star
     let isIphoneX=this.isIphoneX()
-    let top = plus.navigator.getStatusbarHeight()
+    let top = plus.navigator.getStatusbarHeight();
     let bottom = 0
+    // top = top+10;
+  
     if(isIphoneX){
-      top = top-10
-      bottom = 25
+      top+=20;
+      // alert(top);
+      bottom = 10
     }
      //判断是否iPhone XS Max
      console.log('判断是否iPhone XS Max',plus.device.model);

@@ -259,6 +259,14 @@ export default [{
       requiresAuth: true
     },
   },
+  //用户充值
+  {
+    path:"//ucenter/recharge",
+    component:()=>import('@/pages/ucenterRecharge'),
+    meta: {
+      requiresAuth: true
+    },
+  },
 
   //交易记录
   {

@@ -8,7 +8,7 @@
         </a>
       </div>
       <div class="container">
-        <div class="nTab nTab-mytab" :class="marginBottom?'marginBottom':null">
+        <div class="nTab nTab-mytab" >
           <!--<div class="TabTitle">
             <ul id="myTab2">
               <li class="normal" @click="$router.push('/login')">用户登录</li>
@@ -48,7 +48,7 @@
               </el-form-item>
 
               <el-form-item label prop="rec_name">
-                <el-input v-model="ruleForm.rec_name" @focus="focus" @blur="blur" placeholder="推荐人账号"></el-input>
+                <el-input v-model="ruleForm.rec_name" placeholder="推荐人账号"></el-input>
               </el-form-item>
 
               <el-form-item label prop="mobile_code" v-if="reg_sms_open==1">
@@ -116,7 +116,6 @@ export default {
     return {
       dialogVisible: false,
       readme: false,
-      marginBottom:false,
       ruleForm: {
         name: "",
         mobile: "",
@@ -306,15 +305,7 @@ export default {
         }
       }, 1000);
     },
-    focus(){
-       if(plus.os.name=='Android'){
-          this.marginBottom=true;
-       }
-    },
-    blur(){
-      this.marginBottom=false;
-    }
-  }
+  },
 };
 </script>
 
@@ -324,8 +315,8 @@ export default {
   overflow: auto;
 }
 .magic-body {
-  background: url(../../../static/images/magic-bg.jpg) no-repeat left bottom;
-  background-size: auto 100%;
+  background: url(../../../static/images/magic-bg.jpg) no-repeat center bottom;
+  background-size: 100% 100%;
 }
 .magic-titles {
   padding: 15px 0;
@@ -620,8 +611,6 @@ export default {
     }
   }
 }
-.marginBottom{
-  margin-bottom: 50%;
-}
+
 </style>
 

@@ -141,8 +141,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .magic-body {
-  background: url(../../../static/images/magic-bg.jpg) no-repeat left bottom;
-  background-size: auto 100%;
+  background: url(../../../static/images/magic-bg.jpg) no-repeat center bottom;
+  background-size: 100% 100%;
 }
 .magic-titles {
   padding: 15px 0;

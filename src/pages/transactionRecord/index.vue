@@ -58,7 +58,9 @@ export default {
         case '3':
           title='转换记录'
           break;
-      
+        case '4':
+          title='充值记录'
+          break;
         default:
           break;
       }
@@ -73,8 +75,9 @@ export default {
   methods:{
     getData(){
       let successCallback = data=>{
-        this.transactionRecord = data.data
-        this.count = data.page.total
+        console.log(data);
+          this.transactionRecord = data.data
+          this.count = data.page.total
       }
       let {type,page,pageSize} = this
       let params = {type,page,pageSize}

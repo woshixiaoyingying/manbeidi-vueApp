@@ -3,11 +3,11 @@
     <div class="order-info">
       <div class="clearfix bg-white address address-box" v-if="!is_selfpick">
         <van-address-list v-model="chosenAddressId" :list="list" @select="select"/>
-        <!-- <h2>
+        <h2>
           <b class="fl">选择收货地址：</b>
           <a class="fr" @click="$router.push('//ucenter/address')" target="_blank">管理地址</a>
         </h2>
-        <ul class="address-list clearfix">
+        <!-- <ul class="address-list clearfix">
           <li
             :class="address_id==value.id ? 'selected' : ''"
             v-for="(value,key) in address"
@@ -26,7 +26,7 @@
               </label>
             </div>
           </li>
-        </ul>-->
+        </ul> -->
       </div>
       <h3 class="htitle">支付方式：</h3>
       <div class=" p20 bg-white">

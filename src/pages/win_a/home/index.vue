@@ -273,7 +273,7 @@ export default {
 }
 .g-body-container{
   position: relative;
-  top:-1.2rem;
+  top:-1.1rem;
 }
 .hide{
   top:0;

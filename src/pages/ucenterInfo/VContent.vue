@@ -287,14 +287,17 @@ export default {
       this.$refs.addressTextarea.focus();
     },
     textareaFocus(){
-      if(plus.os.name=='Android'){
-        this.padding=true;
-      }
+      // if(plus.os.name=='Android'){
+      //   this.padding=true;
+      // }
     },
     textareaBlur(){
       this.padding=false;
     }
   },
+  beforeDestroy (){
+    this.padding=false;
+  }
 }
 </script>
 

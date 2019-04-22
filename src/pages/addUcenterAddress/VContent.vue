@@ -3,7 +3,7 @@
          
 
 <div style="padding-top:20px">
-   <el-form label-width="110px"  inline :model="ruleForm" :rules="rules" ref="ruleForm" :class="paddingTop?'paddingTop':null">
+   <el-form label-width="110px"  inline :model="ruleForm" :rules="rules" ref="ruleForm" >
 
         <el-form-item label="姓名" prop="accept_name" >
           <el-input type="text" placeholder="请输入真实姓名" v-model="ruleForm.accept_name"></el-input>
@@ -46,10 +46,10 @@
           <el-input type="textarea" placeholder="路名或街道地址，门牌号。" v-model="ruleForm.addr"></el-input>
         </el-form-item>
         <el-form-item label="邮编" prop="zip">
-          <el-input type="number" placeholder="邮政编码,为6位数字" v-model="ruleForm.zip" @focus="focus" @blur="blur"></el-input>
+          <el-input type="number" placeholder="邮政编码,为6位数字" v-model="ruleForm.zip"></el-input>
         </el-form-item>
         <el-form-item label="电话" prop="mobile">
-          <el-input type="number" placeholder="联系人电话，11位手机号码" v-model="ruleForm.mobile" @focus="focus" @blur="blur"></el-input>
+          <el-input type="number" placeholder="联系人电话，11位手机号码" v-model="ruleForm.mobile" ></el-input>
         </el-form-item>
         
         <el-form-item label="设为默认">
@@ -90,7 +90,6 @@ export default {
         mobile:"",      //电话
         is_default:false,
       },
-      paddingTop:false,
       rules: {
         accept_name:[
           { required: true, message: '长度2至10个字', max:10 ,min:2,trigger: 'blur'},
@@ -177,22 +176,13 @@ export default {
           return false;
         }
       })
-    },
-    focus(){
-       if(plus.os.name=='Android'){
-          this.paddingTop=true;
-       }
-    },
-    blur(){
-      this.paddingTop=false;
-    }
-  }
+    }, 
+  },
+ 
 }
 </script>
 
 
 <style scoped>
-.paddingTop{
-  padding-bottom: 50%;
-}
+
 </style>

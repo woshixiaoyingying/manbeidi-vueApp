@@ -1,5 +1,5 @@
 <template>
-  <div class="ma20 bg-white" style="font-size:10px" v-if="type==1">
+<div class="ma20 bg-white" style="font-size:10px" v-if="type==1">
   <div class=" tab" index="0">
     <div class="tab-body p20">
       <div class="list-nav" style="display: block;">
@@ -43,6 +43,27 @@
           <li class="red">￥{{item['amount']}}</li>
         </ul>
       </div>
+  </div>
+</div>
+
+<div class="tab-body p20" style="font-size:10px" v-else-if="type==4">
+  <div class=" tab" index="0">
+    <div class="tab-body p20">
+      <div class="list-nav" style="display: block;">
+        <div class="page-list cell-2 mt20" v-for="(item,index) in transactionRecord" :key="index">
+          <ul>
+            <li style="width:50%;" class="gray">{{item.time}}</li>
+            <li style="width:50%;" class="red">
+              <span v-if="item['status']==0" class="red">处理中</span>
+              <span v-else-if="item['status']==1" class="green">充值成功</span>
+              <span v-else-if="item['status']==2" class="gray">充值失败</span>
+            </li>
+            
+          </ul>
+          <div class="p20">充值金额 <span class="red">{{item['account']}}</span></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

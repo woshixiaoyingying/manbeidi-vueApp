@@ -292,7 +292,7 @@ export default {
 
       if(status==2){
         vm.$message({
-          message: '取消关注成功！',
+          message: '已经关注过该商品！',
           type: 'success'
         });
         successCallback()
@@ -315,6 +315,7 @@ export default {
   getUcenterAttention({commit},{params,successCallback}){
     http.get(`${settings.defaultUrl}/ucenterApi/attention`,{params})
     .then(res=>{
+      console.log(res);
       if(res.data.error){
         vm.$message.error(res.data.message);
       }else{
@@ -626,6 +627,37 @@ export default {
     })
   },
 
+   //获取充值账户
+   getUserRecharge({commit},{params,successCallback}){
+    http.get(`${settings.defaultUrl}/ucenterApi/recharge`,{params})
+    .then(res=>{
+      if(res.data.error){
+        vm.$message.error(res.data.message);
+      }else{
+        let message = res.data.message
+        successCallback(message)
+      }
+    })
+  },
+
+   //充值
+   rechargeAccount({commit},{params,successCallback}){
+    params=dealElement(params)
+    http.post(`${settings.defaultUrl}/ucenterApi/recharge_save`,params)
+    .then(res=>{
+      console.log(res);
+      if(res.data.error){
+        vm.$message.error(res.data.message);
+      }else{
+        vm.$message({
+          message: res.data.message,
+          type: 'success'
+        });
+        successCallback()
+      }
+    })
+  },
+
   //获取账余额
   getAccountBalance({commit},{params,successCallback}){
     http.get(`${settings.defaultUrl}/ucenterApi/account`,{params})
@@ -658,6 +690,7 @@ export default {
 
   // 交易记录
   getTransactionRecord({commit},{params,successCallback}){
+    console.log(params);
     http.get(`${settings.defaultUrl}/ucenterApi/bonus_record`,{params})
     .then(res=>{
       if(res.data.error){

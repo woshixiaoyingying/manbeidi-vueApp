@@ -2,7 +2,7 @@
   <div id="middlemain"
     :class="phoneParams.systemType==='Android'?{isandroid:true}:null"
     v-loading="middlemainLoading.loading"
-    :element-loading-text="middlemainLoading.text" :style="{height:height+'px'}"
+    :element-loading-text="middlemainLoading.text" 
   >
     <transition :name="transitionName">
       <router-view></router-view>
@@ -155,9 +155,6 @@ export default {
 #middlemain{
   width: 100%;
   height: 100%;
-        position: fixed;
-    top:0;
-    left: 0;
 }
 
 </style>

@@ -13,7 +13,8 @@
       <div class="info">
         <div class="touBox">
           <label for="in">
-            <img :src="headerImg" class="tou" @click="$refs.headerImageInput.click()">
+            <!-- <img :src="headerImg" class="tou" @click="$refs.headerImageInput.click()"> -->
+            <img :src="headerImg" class="tou">
           </label>
           
           <input type="file" class="picImg" name="imgFile" ref="headerImageInput" value="修改头像" @change="changImg" id="in">
@@ -154,8 +155,8 @@
           </router-link>
         </van-col>
         <van-col span="6">
-          <router-link to="/win_a/extension">
-            <img src="static/images/shuju.png" class="icon_i">我的推广
+          <router-link to="//ucenter/recharge">
+            <img src="static/images/shuju.png" class="icon_i">用户充值
           </router-link>
         </van-col>
         <van-col span="6">

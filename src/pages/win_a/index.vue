@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="g-container">
-    <div class="g-view-container" :style="{paddingBottom:paddingBottom+'px',height:height+'px'}">
+    <div class="g-view-container" :style="{paddingBottom:paddingBottom+'px'}">
       <router-view></router-view>
     </div>
     <div class="g-footer-container">
@@ -47,6 +47,9 @@ export default {
   overflow-y: auto;
   background-color: #f4f4f4;
   height: 100%;
+  flex-direction:column;
+  justify-content:space-between;
+  background-color: #fff;
 }
 .g-footer-container {
   position: absolute;

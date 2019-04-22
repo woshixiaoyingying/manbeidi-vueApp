@@ -2,13 +2,13 @@
   <div class="tixian">
     <div class="header" :style="fitPhoneTop">
       <van-nav-bar
-        title="申请提现"
+        title="用户充值"
         @click-left="$router.go(-1)"
         left-arrow
       />
     </div>
     <div class="content">
-      <v-content v-if="accountBalance.totals" :accountBalance="accountBalance"></v-content>
+      <v-content v-if="rechargeData.customer.balance" :rechargeData="rechargeData"></v-content>
     </div>
     <div class="bottom" :style="fitPhoneBottom">
 
@@ -24,7 +24,7 @@ export default {
   },
   data () {
     return {
-      accountBalance:{}
+      rechargeData:{}
     }
   },
   created(){
@@ -39,10 +39,11 @@ export default {
   methods:{
     getData(){
       let successCallback = data=>{
-        this.accountBalance = data
+          console.log(data)
+        this.rechargeData = data
       }
       let params={}
-      this.$store.dispatch({type:'getAccountBalance',params,successCallback})
+      this.$store.dispatch({type:'getUserRecharge',params,successCallback})
     }
   },
   mounted() {

@@ -247,7 +247,7 @@ export default {
 
     getData() {
       let successCallback = data => {
-        console.log(data);
+        // console.log(data);
         this.productData = data;
         this.comment = data.comment;
       };
@@ -340,11 +340,11 @@ export default {
       let icon_shou = this.$refs.icon_shou;
       if (this.guanzhu) {
         icon_shou.classList.add("icon-shou");
-        icon_shou.classList.remove("icon-shou-1");
+        // icon_shou.classList.remove("icon-shou-1");
         this.guanzhu = false;
       } else {
-        icon_shou.classList.remove("icon-shou");
-        icon_shou.classList.add("icon-shou-1");
+        // icon_shou.classList.remove("icon-shou");
+        // icon_shou.classList.add("icon-shou-1");
         this.guanzhu = true;
       }
 
